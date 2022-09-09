@@ -1,4 +1,4 @@
-#ifndef _WIN32
+#ifdef _WIN32
     #include <GL/glut.h>
 #elif __linux__
     #include <GL/glut.h>
@@ -7,7 +7,9 @@
     #include <OpenGL/gl.h>
     #include <GLUT/glut.h>
 #endif
+#define _USE__MATH_DEFINES
 #include <cmath>
+#include <math.h>
 
 void drawCircle(int NumofTriangles, float radius, float x, float y, float radiusy = 0.0f){
     float twicepi = 2.0f * M_PI;
