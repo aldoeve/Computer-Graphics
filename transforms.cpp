@@ -2,10 +2,9 @@
 //Made by Aldo Vera-Espinoza
 //Course: CS3233
 //Date: September 19, 2022
-//Project: Transforms
 //The code takes a point inputed by the user and 
 //returns the point contrived from the selected
-//transforms.
+//transform.
 //--------------------------------------------------------------------------------------
 #include <iostream>
 #include <math.h>
@@ -58,7 +57,7 @@ int main(){
     double x, y;
     cout << "Enter the point the the form x y:";
     cin >> x >> y;
-    cout << "Enter 0 to exit the program. The transform matrix is constantly popped after each transform." << endl;
+    cout << "Enter 0 to exit the program. The matrix is constantly popped after each transform." << endl;
     cout << "Enter the transforms to apply to the point. 1 is translation, 2 is scaling, and 3 is rotation." << endl;
     cout << "The program will only carry out one transform at a time."  << endl;
 
