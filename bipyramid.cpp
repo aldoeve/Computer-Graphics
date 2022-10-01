@@ -63,23 +63,23 @@ void display() {
 
    //Top half sides of the shape
    glBegin(GL_TRIANGLES);
-      glColor3f(1.0f, 0.0f, 0.0f);
+      glColor3f(1.0f, 0.34f, 0.2f);
       glVertex3fv(point[0]);
       glVertex3fv(point[5]);
       glVertex3fv(point[4]);
-      glColor3f(0.0f, 1.0f, 0.0f);
+      glColor3f(0.22f, 1.0f, 0.07f);
       glVertex3fv(point[4]);
       glVertex3fv(point[5]);
       glVertex3fv(point[3]);
-      glColor3f(0.8f, 0.4f, 0.0f);
+      glColor3f(0.3f, 0.3f, 1.0f);
       glVertex3fv(point[1]);
       glVertex3fv(point[5]);
       glVertex3fv(point[0]);
-      glColor3f(0.0f, 0.5f, 0.7f);
+      glColor3f(0.68f, 0.13f, 1.0f);
       glVertex3fv(point[2]);
       glVertex3fv(point[5]);
       glVertex3fv(point[1]);
-      glColor3f(0.3f, 0.6f, 0.3f);
+      glColor3f(1.0f, 0.94f, 0.12f);
       glVertex3fv(point[3]);
       glVertex3fv(point[5]);
       glVertex3fv(point[2]);
