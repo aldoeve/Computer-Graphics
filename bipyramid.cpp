@@ -49,7 +49,6 @@ void display() {
    };
    generatePentagon(point, 0, 0.5f);
    glRotatef(35.0f, 1.0f, 1.0f, 1.0f);
-   //glTranslatef(-point[1][0], -point[1][1], -point[1][2]);
    
    //Top half base used to guide where the sides would be placed
    glBegin(GL_TRIANGLE_FAN);
@@ -88,8 +87,7 @@ void display() {
    glLoadIdentity();
    glOrtho(-2.0f, 2.0f, -2.0f, 2.0f, -2.0f, 2.0f);
    glRotatef(35.0f, 1.0f, 1.0f, 1.0f);
-   glRotatef(180.0f, 1.0f, 0.0f, 0.0f);   
-   //glTranslatef(-point[1][0], -point[1][1], -point[1][2]);
+   glRotatef(180.0f, 1.0f, 0.0f, 0.0f);
 
    //bottom half of the sides
    glBegin(GL_TRIANGLES);
