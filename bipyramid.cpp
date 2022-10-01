@@ -48,8 +48,8 @@ void display() {
       {0.0f, 0.0f, 0.0f}, {0.0f, 0.0f, 0.0f}, {0.0f, 0.7f, 0.0f}
    };
    generatePentagon(point, 0, 0.5f);
-   glTranslatef(-point[1][0], -point[1][1], -point[1][2]);
    glRotatef(35.0f, 1.0f, 1.0f, 1.0f);
+   //glTranslatef(-point[1][0], -point[1][1], -point[1][2]);
    
    //Top half base used to guide where the sides would be placed
    glBegin(GL_TRIANGLE_FAN);
@@ -87,31 +87,33 @@ void display() {
 
    glLoadIdentity();
    glOrtho(-2.0f, 2.0f, -2.0f, 2.0f, -2.0f, 2.0f);
-   glRotatef(305.0f, 1.0f, 1.0f, 1.0f);
+   glRotatef(35.0f, 1.0f, 1.0f, 1.0f);
+   glRotatef(180.0f, 1.0f, 0.0f, 0.0f);   
+   //glTranslatef(-point[1][0], -point[1][1], -point[1][2]);
 
    //bottom half of the sides
-   //glBegin(GL_TRIANGLES);
-   //   glColor3f(1.0f, 0.0f, 0.0f);
-   //   glVertex3fv(point[0]);
-   //   glVertex3fv(point[5]);
-   //   glVertex3fv(point[4]);
-   //   glColor3f(0.0f, 1.0f, 0.0f);
-   //   glVertex3fv(point[4]);
-   //   glVertex3fv(point[5]);
-   //   glVertex3fv(point[3]);
-   //   glColor3f(0.8f, 0.4f, 0.0f);
-   //   glVertex3fv(point[1]);
-   //   glVertex3fv(point[5]);
-   //   glVertex3fv(point[0]);
-   //   glColor3f(0.0f, 0.5f, 0.7f);
-   //   glVertex3fv(point[2]);
-   //   glVertex3fv(point[5]);
-   //   glVertex3fv(point[1]);
-   //   glColor3f(0.3f, 0.6f, 0.3f);
-   //   glVertex3fv(point[3]);
-   //   glVertex3fv(point[5]);
-   //   glVertex3fv(point[2]);
-   //glEnd();
+   glBegin(GL_TRIANGLES);
+      glColor3f(1.0f, 0.0f, 0.0f);
+      glVertex3fv(point[0]);
+      glVertex3fv(point[5]);
+      glVertex3fv(point[4]);
+      glColor3f(0.0f, 1.0f, 0.0f);
+      glVertex3fv(point[4]);
+      glVertex3fv(point[5]);
+      glVertex3fv(point[3]);
+      glColor3f(0.8f, 0.4f, 0.0f);
+      glVertex3fv(point[1]);
+      glVertex3fv(point[5]);
+      glVertex3fv(point[0]);
+      glColor3f(0.0f, 0.5f, 0.7f);
+      glVertex3fv(point[2]);
+      glVertex3fv(point[5]);
+      glVertex3fv(point[1]);
+      glColor3f(0.3f, 0.6f, 0.3f);
+      glVertex3fv(point[3]);
+      glVertex3fv(point[5]);
+      glVertex3fv(point[2]);
+   glEnd();
 
    glFlush();
 }
