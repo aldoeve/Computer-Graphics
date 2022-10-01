@@ -11,13 +11,13 @@
 #define _USE_MATH_DEFINES
 #include <math.h>
 #ifdef _WIN32
-#include <GL/glut.h>
+   #include <GL/glut.h>
 #elif __linux__
-#include <GL/glut.h>
+   #include <GL/glut.h>
 #elif __APPLE__
-#define GL_SILENCE_DEPRECATION
-#include <OpenGL/gl.h>
-#include <GLUT/glut.h>
+   #define GL_SILENCE_DEPRECATION
+   #include <OpenGL/gl.h>
+   #include <GLUT/glut.h>
 #endif
 using namespace std;
 
@@ -32,6 +32,48 @@ void generatePentagon(float point[][3], int startingIndex, float radius){
       angle += angleIncreament;
    }
    return;
+}
+
+//This function generates the vertices of a pentagonal pyramid for OpenGL to draw
+void generatePyramid(float point[][3], bool colorSwitch = false){
+   float color[][3] = {
+         {0.9f, 0.5f, 0.0f}, {0.22f, 1.0f, 0.07f}, {0.3f, 0.3f, 1.0f},
+         {0.68f, 0.13f, 1.0f}, {1.0f, 0.94f, 0.12f}
+      };
+   if (colorSwitch){
+      color[0][0] = 0.7f; color[0][1] = 1.0f; color[0][2] = 0.8f;
+      color[1][0] = 1.0f; color[1][1] = 0.5f; color[1][2] = 0.9f;
+      color[2][0] = 0.4f; color[2][1] = 0.0f; color[2][2] = 0.1f;
+      color[3][0] = 0.3f; color[3][1] = 1.0f; color[3][2] = 1.0f;
+      color[4][0] = 0.6f; color[4][1] = 0.5f; color[4][2] = 0.5f;
+   }
+
+   glBegin(GL_TRIANGLES);
+      glColor3fv(color[0]);
+      glVertex3fv(point[0]);
+      glVertex3fv(point[5]);
+      glVertex3fv(point[4]);
+
+      glColor3fv(color[1]);
+      glVertex3fv(point[4]);
+      glVertex3fv(point[5]);
+      glVertex3fv(point[3]);
+
+      glColor3fv(color[2]);
+      glVertex3fv(point[1]);
+      glVertex3fv(point[5]);
+      glVertex3fv(point[0]);
+
+      glColor3fv(color[3]);
+      glVertex3fv(point[2]);
+      glVertex3fv(point[5]);
+      glVertex3fv(point[1]);
+
+      glColor3fv(color[4]);
+      glVertex3fv(point[3]);
+      glVertex3fv(point[5]);
+      glVertex3fv(point[2]);
+   glEnd();
 }
 
 void display() {
@@ -60,58 +102,16 @@ void display() {
       glVertex3fv(point[4]);
    glEnd();
 
-   //Top half sides of the shape
-   glBegin(GL_TRIANGLES);
-      glColor3f(1.0f, 0.34f, 0.2f);
-      glVertex3fv(point[0]);
-      glVertex3fv(point[5]);
-      glVertex3fv(point[4]);
-      glColor3f(0.22f, 1.0f, 0.07f);
-      glVertex3fv(point[4]);
-      glVertex3fv(point[5]);
-      glVertex3fv(point[3]);
-      glColor3f(0.3f, 0.3f, 1.0f);
-      glVertex3fv(point[1]);
-      glVertex3fv(point[5]);
-      glVertex3fv(point[0]);
-      glColor3f(0.68f, 0.13f, 1.0f);
-      glVertex3fv(point[2]);
-      glVertex3fv(point[5]);
-      glVertex3fv(point[1]);
-      glColor3f(1.0f, 0.94f, 0.12f);
-      glVertex3fv(point[3]);
-      glVertex3fv(point[5]);
-      glVertex3fv(point[2]);
-   glEnd();
+   //Top half of the shape
+   generatePyramid(point);
 
    glLoadIdentity();
    glOrtho(-2.0f, 2.0f, -2.0f, 2.0f, -2.0f, 2.0f);
    glRotatef(35.0f, 1.0f, 1.0f, 1.0f);
    glRotatef(180.0f, 1.0f, 0.0f, 0.0f);
 
-   //bottom half of the sides
-   glBegin(GL_TRIANGLES);
-      glColor3f(1.0f, 0.0f, 0.0f);
-      glVertex3fv(point[0]);
-      glVertex3fv(point[5]);
-      glVertex3fv(point[4]);
-      glColor3f(0.0f, 1.0f, 0.0f);
-      glVertex3fv(point[4]);
-      glVertex3fv(point[5]);
-      glVertex3fv(point[3]);
-      glColor3f(0.8f, 0.4f, 0.0f);
-      glVertex3fv(point[1]);
-      glVertex3fv(point[5]);
-      glVertex3fv(point[0]);
-      glColor3f(0.0f, 0.5f, 0.7f);
-      glVertex3fv(point[2]);
-      glVertex3fv(point[5]);
-      glVertex3fv(point[1]);
-      glColor3f(0.3f, 0.6f, 0.3f);
-      glVertex3fv(point[3]);
-      glVertex3fv(point[5]);
-      glVertex3fv(point[2]);
-   glEnd();
+   //bottom half of the shape
+   generatePyramid(point, true);
 
    glFlush();
 }
