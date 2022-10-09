@@ -1,0 +1,1 @@
+g++ -g -Wall -o out test1.cpp camera.cpp -lglut -lGL -lGLU
