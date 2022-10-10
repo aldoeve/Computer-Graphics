@@ -23,7 +23,7 @@
 #include <math.h>
 
 //This function generates the normal vector of given points and passes it to OpenGL
-void normalVector(float a, float v, float w){
+void normalVector(float* a, float* v, float* w){
     ;
 }
 
