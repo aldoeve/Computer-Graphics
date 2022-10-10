@@ -93,7 +93,6 @@ void display(){
     glMaterialfv(GL_FRONT, GL_AMBIENT, shapeColor);
     glMaterialf(GL_FRONT, GL_SHININESS, 50.0f);
 
-    glRotatef(35.0f, 1.0f, 1.0f, 1.0f);
     generatePyramid(point);
 
     glFlush();
