@@ -70,11 +70,11 @@ void display() {
 
     glBegin(GL_QUADS);
 
-    glNormal3i(0,0,1);       // Front face
-    glVertex3iv(point[3]);
-    glVertex3iv(point[1]);
-    glVertex3iv(point[5]);
-    glVertex3iv(point[7]);
+    //glNormal3i(0,0,1);       // Front face
+    //glVertex3iv(point[3]);
+    //glVertex3iv(point[1]);
+    //glVertex3iv(point[5]);
+    //glVertex3iv(point[7]);
 
     glNormal3i(1,0,0);       // Right face
     glVertex3iv(point[7]);

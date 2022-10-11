@@ -17,7 +17,6 @@
    #include <OpenGL/gl.h>
    #include <GLUT/glut.h>
 #endif
-
 #include <cstdio>
 #include "camera.h"
 #define _USE_MATH_DEFINES
@@ -48,54 +47,54 @@ void normalVector(float* p, float* pNext, float* pLast){
 void generatePyramid(float point[][3], bool bottom = false){
    glBegin(GL_TRIANGLES);
       if(bottom){
-         normalVector(point[0], point[6], point[1]);
+         normalVector(point[0], point[1], point[6]);
          glVertex3fv(point[0]);
-         glVertex3fv(point[6]);
-         glVertex3fv(point[1]);
-
-         normalVector(point[1], point[6], point[2]);
          glVertex3fv(point[1]);
          glVertex3fv(point[6]);
+
+         normalVector(point[1], point[2], point[6]);
+         glVertex3fv(point[1]);
          glVertex3fv(point[2]);
+         glVertex3fv(point[6]);
 
-         normalVector(point[2], point[6], point[3]);
+         normalVector(point[2], point[3], point[6]);
          glVertex3fv(point[2]);
-         glVertex3fv(point[6]);
-         glVertex3fv(point[3]);
-
-         normalVector(point[3], point[6], point[4]);
          glVertex3fv(point[3]);
          glVertex3fv(point[6]);
-         glVertex3fv(point[4]);
-
-         normalVector(point[4], point[6], point[0]);
+         
+         normalVector(point[3], point[4], point[6]);
+         glVertex3fv(point[3]);
          glVertex3fv(point[4]);
          glVertex3fv(point[6]);
+
+         normalVector(point[4], point[0], point[6]);
+         glVertex3fv(point[4]);
          glVertex3fv(point[0]);
+         glVertex3fv(point[6]);
       }
       else{
-         normalVector(point[0], point[5], point[4]);
+         normalVector(point[0], point[5], point[1]);
          glVertex3fv(point[0]);
          glVertex3fv(point[5]);
-         glVertex3fv(point[4]);
+         glVertex3fv(point[1]);
 
-         normalVector(point[4], point[5], point[3]);
-         glVertex3fv(point[4]);
-         glVertex3fv(point[5]);
-         glVertex3fv(point[3]);
-
-         normalVector(point[3], point[5], point[2]);
-         glVertex3fv(point[3]);
+         normalVector(point[1], point[5], point[2]);
+         glVertex3fv(point[1]);
          glVertex3fv(point[5]);
          glVertex3fv(point[2]);
 
-         normalVector(point[2], point[5], point[1]);
+         normalVector(point[2], point[5], point[3]);
          glVertex3fv(point[2]);
          glVertex3fv(point[5]);
-         glVertex3fv(point[1]);
+         glVertex3fv(point[3]);
+         
+         normalVector(point[3], point[5], point[4]);
+         glVertex3fv(point[3]);
+         glVertex3fv(point[5]);
+         glVertex3fv(point[4]);
 
-         normalVector(point[1], point[5], point[0]);
-         glVertex3fv(point[1]);
+         normalVector(point[4], point[5], point[0]);
+         glVertex3fv(point[4]);
          glVertex3fv(point[5]);
          glVertex3fv(point[0]);
       }
@@ -139,12 +138,12 @@ void display(){
     };
     generatePentagon(point, 0, 0.5f);
 
-    float shapeColor[] = {0.0f, 0.8f, 0.8f};
+    float shapeColor[] = {0.0f, 0.7f, 0.5f};
     glMaterialfv(GL_FRONT, GL_DIFFUSE, shapeColor);
     glMaterialfv(GL_FRONT, GL_SPECULAR, shapeColor);
     glMaterialfv(GL_FRONT, GL_AMBIENT, shapeColor);
     glMaterialf(GL_FRONT, GL_SHININESS, 50.0f);
-
+    glRotatef(50.0f, 1.0f, 1.0f, 1.0f);
     generatePyramid(point);
     generatePyramid(point, true);
 
