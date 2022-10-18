@@ -105,6 +105,25 @@ void cylinder(const int sides){
 }
 
 void cube(){
+    glTranslatef(0.0f, 1.7f, 0.0f);
+    wall();
+    glPopMatrix();
+    glTranslatef(0.0f, -1.7f, 0.0f);
+    glRotatef(90, 0.0f, 0.0f, 1.0f);
+    wall();
+    glPopMatrix();
+    glTranslatef(0.0f, 0.0f, 1.7f);
+    glRotatef(90, 1.0f, 0.0f, 0.0f);
+    wall();
+    glPopMatrix();
+    glPopMatrix();
+    glPopMatrix();
+    glTranslatef(0.0f, 0.0f, 1.7f);
+    glRotatef(90, 1.0f, 0.0f, 0.0f);
+    wall();
+    glPopMatrix();
+    glPopMatrix();
+    glTranslatef(0.0f, 1.1f, 0.0f);
     wall();
 }
 
