@@ -11,6 +11,7 @@
 #include "camera.h"
 #define _USE_MATH_DEFINES
 #include <math.h>
+#include <iostream>
 
 void init(){
     glEnable(GL_LIGHTING);
@@ -23,7 +24,7 @@ void init(){
 
 void normalVector(float* p, float* pNext, float* pLast){
    float a[3], v[3], w[3];
-   for(int i(3); i < 3; ++i){
+   for(int i(0); i < 3; ++i){
       a[i] = p[i];
       v[i] = pNext[i];
       w[i] = pLast[i];
@@ -34,8 +35,10 @@ void normalVector(float* p, float* pNext, float* pLast){
       w[i] -= a[i];
    }
    float x(v[1]*w[2] - v[2]*w[1]);
-   float y(v[2]*w[0] - v[0]*w[2]);
+   float y(v[2]*w[1] - v[0]*w[2]);
    float z(v[0]*w[1] - v[1]*w[0]); 
+
+   std::cout << x << '/' << y << '/' << z << std::endl;
 
    glNormal3f(x, y, z);
    return;
@@ -43,13 +46,19 @@ void normalVector(float* p, float* pNext, float* pLast){
 
 void wall(){
     glBegin(GL_TRIANGLES);
-        glVertex3f(0.0f, 0.0f, 1.7f);
-        glVertex3f(0.0f, 0.0f, 0.0f);
-        glVertex3f(1.7f, 0.0f, 0.0f);
+        float points[][3] = {
+            {0.0f, 0.0f, 1.7f}, {0.0f, 0.0f, 0.0f}, {1.7f, 0.0f, 0.0f},
+            {1.7f, 0.0f, 1.7f}
+        };
 
-        glVertex3f(1.7f, 0.0f, 0.0f);
-        glVertex3f(1.7f, 0.0f, 1.7f);
-        glVertex3f(0.0f, 0.0f, 1.7f);
+        glNormal3f(0, 1, 0);
+        glVertex3fv(points[0]);
+        glVertex3fv(points[1]);
+        glVertex3fv(points[2]);
+
+        glVertex3fv(points[2]);
+        glVertex3fv(points[3]);
+        glVertex3fv(points[0]);
     glEnd();
 }
 
@@ -66,8 +75,20 @@ void display(){
     glMaterialfv(GL_FRONT, GL_AMBIENT, cube_color);
     glMaterialf(GL_FRONT, GL_SHININESS, 50.0F);
 
-    glTranslatef(-0.5f, 0.0f, 0.0f);
+    glTranslatef(-0.85f, -0.85f, -0.85f);
     wall();
+    glTranslatef(0.0f, 1.7f, 0.0f);
+    glRotatef(270, 0.0f, 0.0f, 1.0f);
+    wall();
+    glPopMatrix();
+    glPopMatrix();
+    glTranslatef(0.0f, 0.0f, 1.7f);
+    glRotatef(270, 1.0f, 0.0f, 0.0f);
+    wall();
+    glPopMatrix();
+    glPopMatrix();
+    glPopMatrix();
+    
 
     glFlush();
 }
