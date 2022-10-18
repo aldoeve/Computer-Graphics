@@ -104,6 +104,10 @@ void cylinder(const int sides){
     glEnd();
 }
 
+void cube(){
+    wall();
+}
+
 void display(){
     glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -111,30 +115,34 @@ void display(){
     cameraSetLimits(-2.0, 2.0, -2.0, 2.0, -2.0, 2.0);
     cameraApply();
 
-    float cube_color[] = { 0.7f, 0.0f, 0.7f, 1.0f };   // Go Bisons!
+    float cube_color[] = { 0.7f, 0.0f, 0.7f, 1.0f };
     glMaterialfv(GL_FRONT, GL_DIFFUSE, cube_color);
     glMaterialfv(GL_FRONT, GL_SPECULAR, cube_color);
     glMaterialfv(GL_FRONT, GL_AMBIENT, cube_color);
     glMaterialf(GL_FRONT, GL_SHININESS, 50.0F);
 
-    glTranslatef(-0.85f, -0.85f, -0.85f);
-    wall();
-    glTranslatef(0.0f, 1.7f, 0.0f);
-    glRotatef(270, 0.0f, 0.0f, 1.0f);
-    wall();
-    glPopMatrix();
-    glPopMatrix();
-    glTranslatef(0.0f, 0.0f, 1.7f);
-    glRotatef(270, 1.0f, 0.0f, 0.0f);
-    wall();
-    glPopMatrix();
-    glPopMatrix();
-    glPopMatrix();
-    
-    glTranslatef(0.0f, 1.0f, 1.0f);
-    glRotatef(90, 0.0f, 1.0f, 0.0f);
-    glScalef(0.01f, 0.01f, 0.2f);
-    cylinder(50);
+    cube();
+
+    //room walls
+    //glTranslatef(-0.85f, -0.85f, -0.85f);
+    //wall();
+    //glTranslatef(0.0f, 1.7f, 0.0f);
+    //glRotatef(270, 0.0f, 0.0f, 1.0f);
+    //wall();
+    //glPopMatrix();
+    //glPopMatrix();
+    //glTranslatef(0.0f, 0.0f, 1.7f);
+    //glRotatef(270, 1.0f, 0.0f, 0.0f);
+    //wall();
+    //glPopMatrix();
+    //glPopMatrix();
+    //glPopMatrix();
+//
+    ////lightbulb string
+    //glTranslatef(0.0f, 1.0f, 1.0f);
+    //glRotatef(90, 0.0f, 1.0f, 0.0f);
+    //glScalef(0.01f, 0.01f, 0.2f);
+    //cylinder(50);
 
     glFlush();
 }
