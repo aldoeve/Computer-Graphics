@@ -1,3 +1,5 @@
+#define _USE_MATH_DEFINES
+#include <math.h>
 #ifdef _WIN32
    #include <GL/glut.h>
 #elif __linux__
@@ -7,10 +9,10 @@
    #include <OpenGL/gl.h>
    #include <GLUT/glut.h>
 #endif
+#include "shapes.h"
+#include "normalVectors.h"
 #include <cstdio>
 #include "camera.h"
-#define _USE_MATH_DEFINES
-#include <math.h>
 #include <iostream>
 
 void init(){

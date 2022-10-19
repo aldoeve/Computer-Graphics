@@ -1,3 +1,6 @@
+#ifndef SHAPES
+#define SHAPES
+
 void wall(){
     glBegin(GL_TRIANGLES);
         float points[][3] = {
@@ -87,3 +90,4 @@ void cylinder(const int sides){
     }
     glEnd();
 }
+#endif

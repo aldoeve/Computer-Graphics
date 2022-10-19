@@ -1,3 +1,5 @@
+#ifndef NORMALVECTOR
+#define NORMALVECTOR
 
 void normalVector(float* p, float* pNext, float* pLast){
    float a[3], v[3], w[3];
@@ -20,3 +22,4 @@ void normalVector(float* p, float* pNext, float* pLast){
    glNormal3f(x, y, z);
    return;
 }
+#endif
