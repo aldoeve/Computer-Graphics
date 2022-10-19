@@ -40,7 +40,7 @@ void normalVector(float* p, float* pNext, float* pLast){
    float y(v[2]*w[1] - v[0]*w[2]);
    float z(v[0]*w[1] - v[1]*w[0]); 
 
-   std::cout << x << '/' << y << '/' << z << std::endl;
+   //std::cout << x << '/' << y << '/' << z << std::endl;
 
    glNormal3f(x, y, z);
    return;
