@@ -1,3 +1,13 @@
+//-----------------------------------------------
+//Developer-------Aldo Vera-Espinoza
+//Course----------CS3233
+//Project---------Lighted Scene
+//Due Date--------October 19, 2022
+//
+//Draws a scene of what some students would have
+//been like when zoom classes were prevalent.
+//-----------------------------------------------
+
 #define _USE_MATH_DEFINES
 #include <math.h>
 #ifdef _WIN32
@@ -58,6 +68,12 @@ void display(){
         wall();
         
     //lightbulb string
+        float purple[] = {0.7f, 0.0f, 0.7f, 1.0f};
+        float white[] = {1.0f, 1.0f, 1.0f, 1.0f};
+        glMaterialfv(GL_FRONT, GL_DIFFUSE, purple);
+        glMaterialfv(GL_FRONT, GL_SPECULAR, white);
+        glMaterialfv(GL_FRONT, GL_AMBIENT, purple);
+        glMateriali(GL_FRONT, GL_SHININESS, 128);
         glTranslatef(0.0f, 1.0f, 1.0f);
         glRotatef(90, 0.0f, 1.0f, 0.0f);
         glScalef(0.01f, 0.01f, 0.2f);
@@ -65,10 +81,10 @@ void display(){
     glPopMatrix();
     
     //bulb
-    float cube_color1[] = {0.9f, 0.8f, 0.0f, 0.3f};
-    glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, cube_color1);
-    glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, cube_color1);
-    glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT, cube_color1);
+    float lightbulb[] = {0.9f, 0.8f, 0.0f, 0.3f};
+    glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, lightbulb);
+    glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, lightbulb);
+    glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT, lightbulb);
     glMaterialf(GL_FRONT_AND_BACK, GL_SHININESS, 50.0F);
     glPushMatrix();
         glTranslatef(0.08f, 0.56f, -0.22f);
@@ -77,14 +93,31 @@ void display(){
         cube();
     glPopMatrix();
 
+    //TV
+    glPushMatrix();
+        float black[] = {0.0f, 0.0f, 0.0f, 1.0f};
+        glMaterialfv(GL_FRONT, GL_DIFFUSE, black);
+        glMaterialfv(GL_FRONT, GL_SPECULAR, lightbulb);
+        glMaterialfv(GL_FRONT, GL_AMBIENT, black);
+        glMateriali(GL_FRONT, GL_SHININESS, 60);
+        glTranslatef(-0.84f, 0.1f, -0.49f);
+        glScalef(0.025f, 0.3f, 0.6f);
+        cube();
+    glPopMatrix();
+
     glFlush();
+
+    //moon
+    glPushMatrix();
+
+    glPopMatrix();
 }
 
 int main(int argc, char** argv){
     glutInit(&argc, argv);
     glutInitWindowSize(640, 640);
     glutInitWindowPosition(50, 50);
-    glutCreateWindow("Online classes");
+    glutCreateWindow("Intro to programming 2020");
     glutDisplayFunc(display);
     init();
     glutMainLoop();

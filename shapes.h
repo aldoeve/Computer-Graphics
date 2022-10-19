@@ -1,5 +1,14 @@
 #ifndef SHAPES
 #define SHAPES
+//-----------------------------------------------
+//Developer-------Aldo Vera-Espinoza
+//Course----------CS3233
+//Project---------Shapes
+//Due Date--------October 19, 2022
+//
+//Containes useful 3d shapes for Opengl to render
+//-----------------------------------------------
+
 
 void wall(){
     glBegin(GL_TRIANGLES);
@@ -60,13 +69,6 @@ void cylinder(const int sides){
         point[pt][2] = 1;
         point[pt + sides][2] = -1;
     }
-
-    float purple[] = {0.7f, 0.0f, 0.7f, 1.0f};
-    float white[] = {1.0f, 1.0f, 1.0f, 1.0f};
-    glMaterialfv(GL_FRONT, GL_DIFFUSE, purple);
-    glMaterialfv(GL_FRONT, GL_SPECULAR, white);
-    glMaterialfv(GL_FRONT, GL_AMBIENT, purple);
-    glMateriali(GL_FRONT, GL_SHININESS, 128);
 
     glBegin(GL_TRIANGLE_FAN);
     glNormal3i(0,0,1);

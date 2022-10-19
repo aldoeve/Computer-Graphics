@@ -1,5 +1,13 @@
 #ifndef NORMALVECTOR
 #define NORMALVECTOR
+//-----------------------------------------------
+//Developer-------Aldo Vera-Espinoza
+//Course----------CS3233
+//Project---------Normalization
+//Due Date--------October 18, 2022
+//
+//Computes a normal vecotor from the given points.
+//-----------------------------------------------
 
 void normalVector(float* p, float* pNext, float* pLast){
    float a[3], v[3], w[3];
