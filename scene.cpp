@@ -109,7 +109,12 @@ void display(){
 
     //moon
     glPushMatrix();
-
+        //float lightbulb[] = {0.9f, 0.8f, 0.0f, 0.3f};
+        glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, lightbulb);
+        glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, lightbulb);
+        glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT, lightbulb);
+        glMaterialf(GL_FRONT_AND_BACK, GL_SHININESS, 50.0F);
+        cube();
     glPopMatrix();
 }
 
