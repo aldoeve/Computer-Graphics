@@ -74,6 +74,11 @@ void display(){
         glTranslatef(0.0f, 0.0f, 1.7f);
         glRotatef(270, 1.0f, 0.0f, 0.0f);
         wall();
+        glPushMatrix();
+            glTranslatef(0.0f, 1.7f, 0.0f);
+            glRotatef(270, 0.0f, 0.0f, 1.0f);
+            wall();
+        glPopMatrix();
         
     //lightbulb string
         float purple[] = {0.7f, 0.0f, 0.7f, 1.0f};
@@ -82,7 +87,7 @@ void display(){
         glMaterialfv(GL_FRONT, GL_SPECULAR, white);
         glMaterialfv(GL_FRONT, GL_AMBIENT, purple);
         glMateriali(GL_FRONT, GL_SHININESS, 128);
-        glTranslatef(0.0f, 1.0f, 1.0f);
+        glTranslatef(0.14f, 1.0f, 1.0f);
         glRotatef(90, 0.0f, 1.0f, 0.0f);
         glScalef(0.01f, 0.01f, 0.2f);
         cylinder(50);
