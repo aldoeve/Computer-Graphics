@@ -4,8 +4,9 @@
 //Project---------Lighted Scene
 //Due Date--------October 19, 2022
 //
-//Draws a scene of what some students would have
-//been like when zoom classes were prevalent.
+//Draws a scene of what the life of students 
+//looked like when covid was prevalent in 2020
+//using OpenGL.
 //-----------------------------------------------
 
 #define _USE_MATH_DEFINES
@@ -20,7 +21,6 @@
    #include <GLUT/glut.h>
 #endif
 #include "shapes.h"
-#include "normalVectors.h"
 #include <cstdio>
 #include "camera.h"
 #include <iostream>
@@ -198,9 +198,19 @@ void display(){
         glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, white);
         glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT, white);
         glMaterialf(GL_FRONT_AND_BACK, GL_SHININESS, 50.0F);
-        glScalef(0.9f, 0.9f, 0.9f);
+        glScalef(0.9f, 0.5f, 0.9f);
         glTranslatef(0.0f, 0.1f, 0.0f);
         wall();
+
+    //screen text
+        std::string zoom("ZOOM");
+        glColor3f(0.0f, 0.0f, 0.0f);
+        glRasterPos3f(0.9f, 3.0f, 0.9f);
+        int len, i;
+        len = 4;
+        for (i = 0; i < len; i++) {
+          glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_10, zoom[i]);
+        }
     glPopMatrix();
 
     glFlush();
@@ -210,7 +220,7 @@ int main(int argc, char** argv){
     glutInit(&argc, argv);
     glutInitWindowSize(640, 640);
     glutInitWindowPosition(50, 50);
-    glutCreateWindow("Intro to programming 2020");
+    glutCreateWindow("2020 Students");
     glutDisplayFunc(display);
     init();
     glutMainLoop();

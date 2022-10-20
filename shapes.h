@@ -6,10 +6,10 @@
 //Project---------Shapes
 //Due Date--------October 19, 2022
 //
-//Containes useful 3d shapes for Opengl to render
+//Containes useful 3d shapes for Opengl to render.
 //-----------------------------------------------
 
-
+//Renders a singular flat wall.
 void wall(){
     glBegin(GL_TRIANGLES);
         float points[][3] = {
@@ -28,6 +28,7 @@ void wall(){
     glEnd();
 }
 
+//renders a cube using the wall impementaion above
 void cube(){
     glPushMatrix();
         glRotatef(-90, 0.0f, 0.0f, -1.0f);
@@ -58,6 +59,7 @@ void cube(){
     glPopMatrix();
 }
 
+//renders a cylinder with normal vetors at the edges to give the illusion of smoothness
 void cylinder(const int sides){
     float point[sides * 2][3];
     double radians, degrees;
