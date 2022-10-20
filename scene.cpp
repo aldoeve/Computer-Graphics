@@ -31,18 +31,9 @@ void init(){
     glEnable(GL_LIGHT1);
     glEnable(GL_NORMALIZE);
     float point[] = {0.1f, 0.6f, -0.25f, 1};
-    float point2[] = {-2.0f, 2.0f, -0.01f, 1};
-    float moon[] = {0.8f, 0.8f, 0.8f, 0.1f};
+    float point2[] = {-1.9f, 1.9f, -0.01f, 1};
     float moonBlue[] = {0.7f, 0.9f, 1.0f, 0.1f};
-    float white[] = {0.0f, 0.0f, 0.0f};
-    float greenish[] = {0.7f, 0.8f, 0.6f};
-    float brown[] = {0.7f, 0.4f, 0.0f};
-    glLightfv(GL_LIGHT0, GL_SPECULAR, white);
-    glLightfv(GL_LIGHT0, GL_DIFFUSE, greenish);
-    glLightfv(GL_LIGHT0, GL_AMBIENT, brown);
     glLightfv(GL_LIGHT0, GL_POSITION, point);
-    glLightfv(GL_LIGHT1, GL_DIFFUSE, moon);
-    glLightfv(GL_LIGHT1, GL_SPECULAR, moon);
     glLightfv(GL_LIGHT1, GL_AMBIENT, moonBlue);
     glLightfv(GL_LIGHT1, GL_POSITION, point2);
 
@@ -57,12 +48,11 @@ void display(){
     cameraSetLimits(-2.0, 2.0, -2.0, 2.0, -2.0, 2.0);
     cameraApply();
 
-    float cubeColor0[] = {0.7f, 0.4f, 0.0f, 0.3f};
     float cubeColor1[] = {0.0f, 0.4f, 0.4f, 1.0f};
     float moonColor[] = {0.96f, 0.93f, 0.84f};
     glMaterialfv(GL_FRONT, GL_DIFFUSE, cubeColor1);
-    glMaterialfv(GL_FRONT, GL_SPECULAR, cubeColor0);
-    glMaterialfv(GL_FRONT, GL_AMBIENT, cubeColor0);
+    glMaterialfv(GL_FRONT, GL_SPECULAR, cubeColor1);
+    glMaterialfv(GL_FRONT, GL_AMBIENT, cubeColor1);
     glMaterialf(GL_FRONT, GL_SHININESS, 50.0F);
     glMaterialf(GL_BACK, GL_SHININESS, 50.0f);
     glMaterialfv(GL_BACK, GL_DIFFUSE, moonColor);
@@ -91,7 +81,7 @@ void display(){
         glMaterialfv(GL_FRONT, GL_DIFFUSE, purple);
         glMaterialfv(GL_FRONT, GL_SPECULAR, white);
         glMaterialfv(GL_FRONT, GL_AMBIENT, purple);
-        glMateriali(GL_FRONT, GL_SHININESS, 128);
+        glMateriali(GL_FRONT, GL_SHININESS, 108);
         glTranslatef(0.14f, 1.0f, 1.0f);
         glRotatef(90, 0.0f, 1.0f, 0.0f);
         glScalef(0.01f, 0.01f, 0.2f);
@@ -115,9 +105,9 @@ void display(){
     glPushMatrix();
         float black[] = {0.0f, 0.0f, 0.0f, 1.0f};
         glMaterialfv(GL_FRONT, GL_DIFFUSE, black);
-        glMaterialfv(GL_FRONT, GL_SPECULAR, lightbulb);
+        glMaterialfv(GL_FRONT, GL_SPECULAR, black);
         glMaterialfv(GL_FRONT, GL_AMBIENT, black);
-        glMateriali(GL_FRONT, GL_SHININESS, 60);
+        glMateriali(GL_FRONT, GL_SHININESS, 40);
         glTranslatef(-0.84f, 0.1f, -0.49f);
         glScalef(0.025f, 0.3f, 0.6f);
         cube();
@@ -130,10 +120,44 @@ void display(){
         glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, moon);
         glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, moon);
         glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT, moonBlue);
-        glMaterialf(GL_FRONT_AND_BACK, GL_SHININESS, 50.0F);
+        glMaterialf(GL_FRONT_AND_BACK, GL_SHININESS, 40.0F);
         glTranslatef(-2.0f, 2.0f, 0.0f);
         glScalef(0.3f, 0.3f, 0.04f);
         cylinder(50);
+    glPopMatrix();
+
+    //couch
+    glPushMatrix();
+        float brown[] = {0.58f, 0.30f, 0.0f, 1.0f};
+        glMaterialfv(GL_FRONT, GL_DIFFUSE, brown);
+        glMaterialfv(GL_FRONT, GL_SPECULAR, brown);
+        glMaterialfv(GL_FRONT, GL_AMBIENT, brown);
+        glMateriali(GL_FRONT, GL_SHININESS, 100);
+        glTranslatef(0.4f, -0.679f, -0.6f);
+        glScalef(0.2f, 0.1f, 0.7f);
+        cube();
+        glTranslatef(0.0f, -1.7f, 0.0f);
+        glScalef(0.2f, 1.5f, 0.1f);
+        cube();
+        glTranslatef(6.9f, 0.0f, 0.0f);
+        cube();
+        glTranslatef(0.0f, 0.0f, 15.3f);
+        cube();
+        glTranslatef(-6.9f, 0.0f, 0.0f);
+        cube();
+        glTranslatef(6.7f, 2.2f, -15.3f);
+        glScalef(1.0f, 1.2f, 10.0f);
+        cube();
+
+    //cushion
+        float greenish[] = {0.5f, 0.9f, 0.1f, 1.0f};
+        glMaterialfv(GL_FRONT, GL_DIFFUSE, greenish);
+        glMaterialfv(GL_FRONT, GL_SPECULAR, greenish);
+        glMaterialfv(GL_FRONT, GL_AMBIENT, greenish);
+        glMateriali(GL_FRONT, GL_SHININESS, 100);
+        glScalef(1.0f, 1.0f, 0.8f);
+        glTranslatef(0.0f, 0.5f, 1.1f);
+        cylinder(20);
     glPopMatrix();
 
     glFlush();
