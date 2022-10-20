@@ -34,6 +34,12 @@ void init(){
     float point2[] = {-2.0f, 2.0f, -0.01f, 1};
     float moon[] = {0.8f, 0.8f, 0.8f, 0.1f};
     float moonBlue[] = {0.7f, 0.9f, 1.0f, 0.1f};
+    float white[] = {0.0f, 0.0f, 0.0f};
+    float greenish[] = {0.7f, 0.8f, 0.6f};
+    float brown[] = {0.7f, 0.4f, 0.0f};
+    glLightfv(GL_LIGHT0, GL_SPECULAR, white);
+    glLightfv(GL_LIGHT0, GL_DIFFUSE, greenish);
+    glLightfv(GL_LIGHT0, GL_AMBIENT, brown);
     glLightfv(GL_LIGHT0, GL_POSITION, point);
     glLightfv(GL_LIGHT1, GL_DIFFUSE, moon);
     glLightfv(GL_LIGHT1, GL_SPECULAR, moon);
@@ -51,16 +57,15 @@ void display(){
     cameraSetLimits(-2.0, 2.0, -2.0, 2.0, -2.0, 2.0);
     cameraApply();
 
-    float cubeColor0[] = {0.9f, 0.8f, 0.0f, 0.3f};
+    float cubeColor0[] = {0.7f, 0.4f, 0.0f, 0.3f};
     float cubeColor1[] = {0.0f, 0.4f, 0.4f, 1.0f};
-    float cubeColor2[] = {0.7f, 0.4f, 0.1f, 1.0f};
     float moonColor[] = {0.96f, 0.93f, 0.84f};
     glMaterialfv(GL_FRONT, GL_DIFFUSE, cubeColor1);
     glMaterialfv(GL_FRONT, GL_SPECULAR, cubeColor0);
     glMaterialfv(GL_FRONT, GL_AMBIENT, cubeColor0);
     glMaterialf(GL_FRONT, GL_SHININESS, 50.0F);
-    glMaterialf(GL_BACK, GL_SHININESS, 10.0f);
-    glMaterialfv(GL_BACK, GL_DIFFUSE, cubeColor2);
+    glMaterialf(GL_BACK, GL_SHININESS, 50.0f);
+    glMaterialfv(GL_BACK, GL_DIFFUSE, moonColor);
     glMaterialfv(GL_BACK, GL_SPECULAR, moonColor);
     glMaterialfv(GL_BACK, GL_AMBIENT, moonColor);
 
@@ -94,7 +99,7 @@ void display(){
     glPopMatrix();
     
     //bulb
-    float lightbulb[] = {0.9f, 0.8f, 0.0f, 0.3f};
+    float lightbulb[] = {0.9f, 0.8f, 0.0f, 0.5f};
     glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, lightbulb);
     glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, lightbulb);
     glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT, lightbulb);
