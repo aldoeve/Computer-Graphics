@@ -160,6 +160,49 @@ void display(){
         cylinder(20);
     glPopMatrix();
 
+    //Table
+    glMaterialfv(GL_FRONT, GL_DIFFUSE, brown);
+    glMaterialfv(GL_FRONT, GL_SPECULAR, brown);
+    glMaterialfv(GL_FRONT, GL_AMBIENT, brown);
+    glMateriali(GL_FRONT, GL_SHININESS, 100);
+    glPushMatrix();
+        glTranslatef(-0.83f, -0.673f, -0.33f);
+        glRotatef(90, 0.0f, 1.0f, 0.0f);
+        glScalef(0.3f, 0.1f, 0.5f);
+        cube();
+        glTranslatef(0.0f, -1.7f, 0.0f);
+        glScalef(0.2f, 1.5f, 0.1f);
+        cube();
+        glTranslatef(6.9f, 0.0f, 0.0f);
+        cube();
+        glTranslatef(0.0f, 0.0f, 15.3f);
+        cube();
+        glTranslatef(-6.9f, 0.0f, 0.0f);
+        cube();
+    
+    //laptop
+        glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, black);
+        glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, black);
+        glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT, black);
+        glMaterialf(GL_FRONT_AND_BACK, GL_SHININESS, 50.0F);
+        glTranslatef(4.0f, 2.3f, -8.0f);
+        glScalef(1.7f, 4.2f, 4.2f);
+        wall();
+        glTranslatef(1.7f, 0.0f, 0.0f);
+        glScalef(1.0f, 0.2f, 1.0f);
+        glRotatef(90, 0.0f, 0.0f, 1.0f);
+        wall();
+
+    //laptop screen
+        glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, white);
+        glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, white);
+        glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT, white);
+        glMaterialf(GL_FRONT_AND_BACK, GL_SHININESS, 50.0F);
+        glScalef(0.9f, 0.9f, 0.9f);
+        glTranslatef(0.0f, 0.1f, 0.0f);
+        wall();
+    glPopMatrix();
+
     glFlush();
 }
 
