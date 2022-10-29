@@ -12,9 +12,10 @@
 
 /*
 Renders a singular flat wall. Takes an x and z to determine the
-length and width of the shape. 
+length and width of the shape. The last parameter is the texel
+coordinates to use and is an array of 6 points. 
 */
-void wall(float, float);
+void wall(float, float, double (*)[2]);
 
 /*
 Renders a cube using the wall implementation.

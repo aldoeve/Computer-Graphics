@@ -14,7 +14,7 @@
 #include <math.h>
 #define PI 3.14159265359
 
-void wall(float x, float z){
+void wall(float x, float z, double texels[4][2]){
     glBegin(GL_TRIANGLES);
         float points[][3] = {
             {0.0f, 0.0f, z}, {0.0f, 0.0f, 0.0f}, {x, 0.0f, 0.0f},
@@ -22,17 +22,22 @@ void wall(float x, float z){
         };
 
         glNormal3f(0, 1, 0);
+        glTexCoord2dv(texels[0]);
         glVertex3fv(points[0]);
+        glTexCoord2dv(texels[1]);
         glVertex3fv(points[1]);
+        glTexCoord2dv(texels[2]);
         glVertex3fv(points[2]);
 
         glVertex3fv(points[2]);
+        glTexCoord2dv(texels[3]);
         glVertex3fv(points[3]);
+        glTexCoord2dv(texels[0]);
         glVertex3fv(points[0]);
     glEnd();
 }
 
-void cube(float sideLength){
+/*void cube(float sideLength){
     glPushMatrix();
         glRotatef(-90, 0.0f, 0.0f, -1.0f);
         wall(sideLength, sideLength);
@@ -95,5 +100,5 @@ void cylinder(const int sides){
         glVertex3fv(point[i % sides + sides]);
     }
     glEnd();
-}
+}*/
 #endif
