@@ -1,3 +1,12 @@
+//-----------------------------------------------
+//Developer-------Aldo Vera-Espinoza
+//Course----------CS3233
+//Project---------Objects
+//Due Date--------October 19, 2022
+//
+//Containes implementations of useful shapes for
+//OpenGL to render.
+//-----------------------------------------------
 #ifdef _WIN32
    #include <GL/glut.h>
 #elif __linux__
@@ -37,33 +46,33 @@ void wall(float x, float z, double texels[4][2]){
     glEnd();
 }
 
-/*void cube(float sideLength){
+void cube(float sideLength, double texels[4][2]){
     glPushMatrix();
         glRotatef(-90, 0.0f, 0.0f, -1.0f);
-        wall(sideLength, sideLength);
+        wall(sideLength, sideLength, texels);
     glPopMatrix();
     glPushMatrix();
-        glTranslatef(0.0f, 1.7f, 0.0f);
-        wall(sideLength, sideLength);
+        glTranslatef(0.0f, sideLength, 0.0f);
+        wall(sideLength, sideLength, texels);
     glPopMatrix();
     glPushMatrix();
-        glTranslatef(1.7f, 1.7f, 0.0f);
+        glTranslatef(sideLength, sideLength, 0.0f);
         glRotatef(90, 0.0f, 0.0f, -1.0f);
-        wall(sideLength, sideLength);
+        wall(sideLength, sideLength, texels);
     glPopMatrix();
     glPushMatrix();
-        glTranslatef(0.0f, 0.0f, 1.7f);
+        glTranslatef(0.0f, 0.0f, sideLength);
         glRotatef(180, 1.0f, 0.0f, 0.0f);
-        wall(sideLength, sideLength);
+        wall(sideLength, sideLength, texels);
     glPopMatrix();
     glPushMatrix();
         glRotatef(-90, 1.0f, 0.0f, 0.0f);
-        wall(sideLength, sideLength);
+        wall(sideLength, sideLength, texels);
     glPopMatrix();
     glPushMatrix();
-        glTranslatef(0.0f, 1.7f, 1.7f);
+        glTranslatef(0.0f, sideLength, sideLength);
         glRotatef(-270, 1.0f, 0.0f, 0.0f);
-        wall(sideLength, sideLength);
+        wall(sideLength, sideLength, texels);
     glPopMatrix();
 }
 
@@ -100,5 +109,5 @@ void cylinder(const int sides){
         glVertex3fv(point[i % sides + sides]);
     }
     glEnd();
-}*/
+}
 #endif

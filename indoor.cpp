@@ -1,3 +1,12 @@
+//-----------------------------------------------
+//Developer-------Aldo Vera-Espinoza
+//Course----------CS3233
+//Project---------Indoor
+//Due Date--------October 19, 2022
+//
+//Renders an indoors scene of Dr.Crawley teaching
+//his class using OpenGL.
+//-----------------------------------------------
 #ifdef _WIN32
    #include <GL/glut.h>
 #elif __linux__
@@ -19,7 +28,7 @@ void init(){
     glutMouseFunc(trackballMouseFunction);
     glutMotionFunc(trackballMotionFunction);
 
-    long int imgWidth, imgHeight, bytesPerPixel;
+    int imgWidth, imgHeight, bytesPerPixel;
     unsigned char* imgdata(stbi_load("floor.jpg", &imgWidth, &imgHeight, &bytesPerPixel, 0));
     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, imgWidth, imgHeight, 0, GL_RGB, GL_UNSIGNED_BYTE, imgdata);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
@@ -48,6 +57,8 @@ void display(){
     wall(2.0f, 2.0f, texels);
     glPopMatrix();
 
+    //glGenTextures(int texture coutn, int* array);
+    //glBindTexture(GL_TEXTURE_2D, textid);
     glFlush();
 }
 

@@ -1,5 +1,3 @@
-#ifndef SHAPES
-#define SHAPES
 //-----------------------------------------------
 //Developer-------Aldo Vera-Espinoza
 //Course----------CS3233
@@ -9,6 +7,8 @@
 //Containes declarations of useful shapes for
 //OpenGL to render.
 //-----------------------------------------------
+#ifndef SHAPES
+#define SHAPES
 
 /*
 Renders a singular flat wall. Takes an x and z to determine the
@@ -19,10 +19,10 @@ void wall(float, float, double (*)[2]);
 
 /*
 Renders a cube using the wall implementation.
-Takes a float to deterime side lenght of the
-cube.
+Takes a float to deterime side length of the
+cube.The last parameter is an array of the texel points.
 */
-void cube(float);
+void cube(float, double (*)[2]);
 
 /*
 Renders a cylinder with normal vectors at the edges. The
