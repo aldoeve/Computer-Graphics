@@ -57,6 +57,7 @@ void display(){
     wall(2.0f, 2.0f, texels);
     glPopMatrix();
 
+    cube();
     //glGenTextures(int texture coutn, int* array);
     //glBindTexture(GL_TEXTURE_2D, textid);
     glFlush();
