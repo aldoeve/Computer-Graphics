@@ -20,6 +20,9 @@
 #include "objects.h"
 #include "stb_image.h"
 #include "camera.h"
+#include <string>
+
+GLuint textureIdList[5];
 
 void init(){
     glEnable(GL_LIGHTING);
@@ -28,10 +31,16 @@ void init(){
     glutMouseFunc(trackballMouseFunction);
     glutMotionFunc(trackballMotionFunction);
 
+    const int numOfTextures(5);
     int imgWidth, imgHeight, bytesPerPixel;
-    unsigned char* imgdata(stbi_load("floor.jpg", &imgWidth, &imgHeight, &bytesPerPixel, 0));
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, imgWidth, imgHeight, 0, GL_RGB, GL_UNSIGNED_BYTE, imgdata);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    std::string textureNames[] = {"floor.jpg", "wood.jpg", "plastic.jpg", "metal.jpg", "DrCrawley.jpg"};
+    glGenTextures(numOfTextures, textureIdList);   
+    for(int i(0); i < numOfTextures; ++i){
+        glBindTexture(GL_TEXTURE_2D, textureIdList[i]);
+        unsigned char* imgdata(stbi_load(textureNames[i].c_str(), &imgWidth, &imgHeight, &bytesPerPixel, 0));
+        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, imgWidth, imgHeight, 0, GL_RGB, GL_UNSIGNED_BYTE, imgdata);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    }
 }
 
 void display(){
@@ -49,17 +58,32 @@ void display(){
     glMaterialfv(GL_FRONT, GL_AMBIENT, colors[0]);
     glMateriali(GL_FRONT, GL_SHININESS, 15);
     
-    double texels[][2] = {{-1, 1}, {-1, -1},
-                          {1, -1}, {1, 1}};
+    double texels[][2] = {{0, 1}, {0, 0},
+                          {1, 0}, {1, 1}};
     
+    //floor
+    glBindTexture(GL_TEXTURE_2D, textureIdList[0]);
     glPushMatrix();
-    glTranslatef(-1.0f, -1.0f, -1.0f);
-    wall(2.0f, 2.0f, texels);
+        glTranslatef(-1.0f, -1.0f, -1.0f);
+        wall(2.0f, 2.0f, texels);
     glPopMatrix();
 
-    cube();
-    //glGenTextures(int texture coutn, int* array);
-    //glBindTexture(GL_TEXTURE_2D, textid);
+    glBindTexture(GL_TEXTURE_2D, textureIdList[1]);
+    //table
+    glPushMatrix();
+        glTranslatef(-0.5f, -0.72f, -0.8f);
+        glScalef(1.0f, 1.0f, 0.8f);
+        table(texels);
+    glPopMatrix();
+
+    glBindTexture(GL_TEXTURE_2D, textureIdList[4]);
+    //professor
+    glPushMatrix();
+        glTranslatef(-0.15f, 0.0f, -0.8f);
+        glRotatef(90, 1.0f, 0.0f, 0.0f);
+        wall(0.4f, 0.6f, texels);
+    glPopMatrix();
+    
     glFlush();
 }
 

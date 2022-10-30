@@ -31,4 +31,16 @@ shape will be rendered with.
 */
 void cylinder(const int);
 
+/*
+Renders a table with texture using a given array of
+texels.
+*/
+void table(double (*)[2]);
+
+/*
+Renders a chair with texture using a given array of
+texels.
+*/
+void chair(double (*)[2]);
+
 #endif

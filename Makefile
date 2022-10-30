@@ -11,4 +11,4 @@ save:
 	git push
 
 reminder:
-	@echo -e '\n zip should contain camera.cpp indoor.cpp objects.cpp makefile stb_image.h objects.h \n'
+	@echo -e '\n zip should contain camera.cpp indoor.cpp objects.cpp makefile stb_image.h objects.h \n crawley.jpg floor.jpg wood.jpeg \n'

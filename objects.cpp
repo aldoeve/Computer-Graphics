@@ -110,4 +110,23 @@ void cylinder(const int sides){
     }
     glEnd();
 }
+
+void table(double texels[4][2]){
+    glPushMatrix();
+            glScalef(1.0f, 0.05f, 0.6f);
+            cube(1, texels);
+        glPopMatrix();
+        glPushMatrix();
+            glScalef(1.0f, 2.7f, 1.0f);
+            glTranslatef(0.0f, -0.1f, 0.0f);
+            cube(0.1, texels);
+            glTranslatef(0.0f, 0.0f, 0.5f);
+            cube(0.1, texels);
+            glTranslatef(0.9f, 0.0f, 0.0f);
+            cube(0.1, texels);
+            glTranslatef(0.0f, 0.0f, -0.5f);
+            cube(0.1, texels);
+        glPopMatrix();
+}
+
 #endif
