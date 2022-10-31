@@ -22,7 +22,7 @@
 #include "camera.h"
 #include <string>
 
-GLuint textureIdList[5];
+GLuint textureIdList[6];
 
 void init(){
     glEnable(GL_LIGHTING);
@@ -31,9 +31,9 @@ void init(){
     glutMouseFunc(trackballMouseFunction);
     glutMotionFunc(trackballMotionFunction);
 
-    const int numOfTextures(5);
+    const int numOfTextures(6);
     int imgWidth, imgHeight, bytesPerPixel;
-    std::string textureNames[] = {"floor.jpg", "wood.jpg", "plastic.jpg", "metal.jpg", "DrCrawley.jpg"};
+    std::string textureNames[] = {"floor.jpg", "wood.jpg", "plastic.jpg", "metal.jpg","oak.jpg", "DrCrawley.jpg"};
     glGenTextures(numOfTextures, textureIdList);   
     for(int i(0); i < numOfTextures; ++i){
         glBindTexture(GL_TEXTURE_2D, textureIdList[i]);
@@ -76,12 +76,29 @@ void display(){
         table(texels);
     glPopMatrix();
 
-    glBindTexture(GL_TEXTURE_2D, textureIdList[4]);
+    glBindTexture(GL_TEXTURE_2D, textureIdList[5]);
     //professor
     glPushMatrix();
         glTranslatef(-0.15f, 0.0f, -0.8f);
         glRotatef(90, 1.0f, 0.0f, 0.0f);
         wall(0.4f, 0.6f, texels);
+    glPopMatrix();
+
+    glBindTexture(GL_TEXTURE_2D, textureIdList[4]);
+    //chairs
+    glPushMatrix();
+        glTranslatef(0.0f, -0.91f, 0.5f);
+        glRotatef(180, 0.0f, 1.0f, 0.0f);
+        chair(texels);
+        glRotatef(-35.0f, 0.0f, 1.0f, 0.0f);
+        glTranslatef(0.8f, 0.0f, 0.0f);
+        chair(texels);
+        glRotatef(35.0f, 0.0f, 1.0f, 0.0f);
+        glTranslatef(-0.2f, 0.0f, -0.5f);
+        chair(texels);
+        chair(texels);
+        chair(texels);
+        chair(texels);
     glPopMatrix();
     
     glFlush();

@@ -113,20 +113,31 @@ void cylinder(const int sides){
 
 void table(double texels[4][2]){
     glPushMatrix();
-            glScalef(1.0f, 0.05f, 0.6f);
-            cube(1, texels);
-        glPopMatrix();
-        glPushMatrix();
-            glScalef(1.0f, 2.7f, 1.0f);
-            glTranslatef(0.0f, -0.1f, 0.0f);
-            cube(0.1, texels);
-            glTranslatef(0.0f, 0.0f, 0.5f);
-            cube(0.1, texels);
-            glTranslatef(0.9f, 0.0f, 0.0f);
-            cube(0.1, texels);
-            glTranslatef(0.0f, 0.0f, -0.5f);
-            cube(0.1, texels);
-        glPopMatrix();
+        glScalef(1.0f, 0.05f, 0.6f);
+        cube(1, texels);
+    glPopMatrix();
+    glPushMatrix();
+        glScalef(1.0f, 2.7f, 1.0f);
+        glTranslatef(0.0f, -0.1f, 0.0f);
+        cube(0.1, texels);
+        glTranslatef(0.0f, 0.0f, 0.5f);
+        cube(0.1, texels);
+        glTranslatef(0.9f, 0.0f, 0.0f);
+        cube(0.1, texels);
+        glTranslatef(0.0f, 0.0f, -0.5f);
+        cube(0.1, texels);
+    glPopMatrix();
+}
+
+void chair(double texels[4][2]){
+    glPushMatrix();
+        glScalef(0.2f, 0.3f, 0.3f);
+        table(texels);
+    glPopMatrix();
+    glPushMatrix();
+        glScalef(2.0f, 1.5f, 0.3f);
+        cube(0.1f, texels);
+    glPopMatrix();
 }
 
 #endif
