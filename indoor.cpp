@@ -102,6 +102,21 @@ void display(){
         glTranslatef(-0.15f, 0.0f, 0.45f);
         chair(texels);
     glPopMatrix();
+
+    glBindTexture(GL_TEXTURE_2D, textureIdList[3]);
+    //floor lamp
+    //glPushMatrix();
+    //    glTranslatef(0.0f, -0.97f, 0.0f);
+    //    glScalef(0.08f, 0.02f, 0.08f);
+    //    glRotatef(90, 1.0f, 0.0f, 0.0f);
+    //    cylinder(30);
+    //glPopMatrix();
+    //glPushMatrix();
+    //    glTranslatef(0.0f, -0.56f, 0.0f);
+    //    glScalef(0.03f, 0.4f, 0.03f);
+    //    glRotatef(90, 1.0f, 0.0f, 0.0f);
+    //    cylinder(35);
+    //glPopMatrix();
     
     glFlush();
 }
