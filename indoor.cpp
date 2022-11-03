@@ -22,7 +22,7 @@
 #include "camera.h"
 #include <string>
 
-GLuint textureIdList[6];
+GLuint textureIdList[7];
 
 void init(){
     glEnable(GL_LIGHTING);
@@ -31,9 +31,9 @@ void init(){
     glutMouseFunc(trackballMouseFunction);
     glutMotionFunc(trackballMotionFunction);
 
-    const int numOfTextures(6);
+    const int numOfTextures(7);
     int imgWidth, imgHeight, bytesPerPixel;
-    std::string textureNames[] = {"floor.jpg", "wood.jpg", "plastic.jpg", "metal.jpg","oak.jpg", "DrCrawley.jpg"};
+    std::string textureNames[] = {"floor.jpg", "wood.jpg", "plastic.jpg", "metal.jpg", "oak.jpg", "DrCrawley.jpg", "shape.jpg"};
     glGenTextures(numOfTextures, textureIdList);   
     for(int i(0); i < numOfTextures; ++i){
         glBindTexture(GL_TEXTURE_2D, textureIdList[i]);
@@ -96,8 +96,10 @@ void display(){
         glRotatef(35.0f, 0.0f, 1.0f, 0.0f);
         glTranslatef(-0.2f, 0.0f, -0.5f);
         chair(texels);
+        glTranslatef(-1.0f, 0.0f, -0.2f);
+        glRotatef(10.0f, 0.0f, 1.0f, 0.0f);
         chair(texels);
-        chair(texels);
+        glTranslatef(-0.15f, 0.0f, 0.45f);
         chair(texels);
     glPopMatrix();
     
