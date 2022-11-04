@@ -36,6 +36,7 @@ void init(){
     glLightfv(GL_LIGHT1, GL_SPECULAR, yellow);
     glLightfv(GL_LIGHT1, GL_AMBIENT, yellow);
     glLightfv(GL_LIGHT1, GL_POSITION, position);
+    glEnable(GL_EMISSION);
 
     glutMouseFunc(trackballMouseFunction);
     glutMotionFunc(trackballMotionFunction);
