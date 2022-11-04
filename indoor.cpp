@@ -28,7 +28,7 @@ void init(){
     cameraSetLimits(-2.0, 2.0, -2.0, 2.0, -2.0, 2.0);
     glEnable(GL_LIGHTING);
     glEnable(GL_LIGHT0);
-    glEnable(GL_LIGHT1);
+    //glEnable(GL_LIGHT1);
     glEnable(GL_NORMALIZE);
     float position[] = {0.8f, -5.0f, -0.8f, 1.0f};
     float yellow[] = {0.9f, 0.8f, 0.0f, 1.0f};
@@ -36,7 +36,7 @@ void init(){
     glLightfv(GL_LIGHT1, GL_SPECULAR, yellow);
     glLightfv(GL_LIGHT1, GL_AMBIENT, yellow);
     glLightfv(GL_LIGHT1, GL_POSITION, position);
-    glEnable(GL_EMISSION);
+    glLightfv(GL_LIGHT1, GL_EMISSION, yellow);
 
     glutMouseFunc(trackballMouseFunction);
     glutMotionFunc(trackballMotionFunction);
