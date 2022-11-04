@@ -25,9 +25,18 @@
 GLuint textureIdList[7];
 
 void init(){
+    cameraSetLimits(-2.0, 2.0, -2.0, 2.0, -2.0, 2.0);
     glEnable(GL_LIGHTING);
     glEnable(GL_LIGHT0);
+    glEnable(GL_LIGHT1);
     glEnable(GL_NORMALIZE);
+    float position[] = {0.8f, -5.0f, -0.8f, 1.0f};
+    float yellow[] = {0.9f, 0.8f, 0.0f, 1.0f};
+    glLightfv(GL_LIGHT1, GL_DIFFUSE, yellow);
+    glLightfv(GL_LIGHT1, GL_SPECULAR, yellow);
+    glLightfv(GL_LIGHT1, GL_AMBIENT, yellow);
+    glLightfv(GL_LIGHT1, GL_POSITION, position);
+
     glutMouseFunc(trackballMouseFunction);
     glutMotionFunc(trackballMotionFunction);
 
@@ -52,11 +61,12 @@ void display(){
     cameraApply();
 
     float colors[][4] = {{1.0f, 1.0f, 1.0f, 1.0f}};
-
+    GLfloat emission1[] = {0.0f, 0.0f, 0.0f, 1.0f};
     glMaterialfv(GL_FRONT, GL_DIFFUSE, colors[0]);
     glMaterialfv(GL_FRONT, GL_SPECULAR, colors[0]);
     glMaterialfv(GL_FRONT, GL_AMBIENT, colors[0]);
     glMateriali(GL_FRONT, GL_SHININESS, 15);
+    glMaterialfv(GL_FRONT, GL_EMISSION, emission1);
     
     double texels[][2] = {{0, 1}, {0, 0},
                           {1, 0}, {1, 1}};
@@ -105,18 +115,35 @@ void display(){
 
     glBindTexture(GL_TEXTURE_2D, textureIdList[3]);
     //floor lamp
-    //glPushMatrix();
-    //    glTranslatef(0.0f, -0.97f, 0.0f);
-    //    glScalef(0.08f, 0.02f, 0.08f);
-    //    glRotatef(90, 1.0f, 0.0f, 0.0f);
-    //    cylinder(30);
-    //glPopMatrix();
-    //glPushMatrix();
-    //    glTranslatef(0.0f, -0.56f, 0.0f);
-    //    glScalef(0.03f, 0.4f, 0.03f);
-    //    glRotatef(90, 1.0f, 0.0f, 0.0f);
-    //    cylinder(35);
-    //glPopMatrix();
+    glPushMatrix();
+        glTranslatef(0.8f, 0.0f, -0.8f);
+        glPushMatrix();
+            glTranslatef(0.0f, -0.97f, 0.0f);
+            glScalef(0.08f, 0.02f, 0.08f);
+            glRotatef(90, 1.0f, 0.0f, 0.0f);
+            cylinder(30);
+        glPopMatrix();
+        glPushMatrix();
+            glTranslatef(0.0f, -0.56f, 0.0f);
+            glScalef(0.03f, 0.4f, 0.03f);
+            glRotatef(90, 1.0f, 0.0f, 0.0f);
+            cylinder(35);
+        glPopMatrix();
+        float yellow[] = {0.9f, 0.8f, 0.0f};
+        GLfloat emission[] = {0.9f, 0.8f, 0.0f};
+        glMaterialfv(GL_FRONT, GL_DIFFUSE, yellow);
+        glMaterialfv(GL_FRONT, GL_SPECULAR, yellow);
+        glMaterialfv(GL_FRONT, GL_AMBIENT, yellow);
+        glMateriali(GL_FRONT, GL_SHININESS, 40);
+        glMaterialfv(GL_FRONT, GL_EMISSION, emission);
+        glPushMatrix();
+            glTranslatef(0.0f, -0.1f, 0.0f);
+            glScalef(0.2f, 0.1f, 0.2f);
+            glRotatef(90.0f, 1.0f, 0.0f, 0.0f);
+            cylinder(20);
+        glPopMatrix();
+    glPopMatrix();
+
     
     glFlush();
 }
