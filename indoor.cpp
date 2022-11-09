@@ -36,7 +36,7 @@ void init(){
     glEnable(GL_LIGHTING);
     glEnable(GL_LIGHT0);
     glEnable(GL_NORMALIZE);
-    float position[] = {0, 0, 0, 1 };
+    float position[] = {0, 0, 0, 1.0f };
     //float position[] = {0.8f, -5.0f, -0.8f, 1};
     float yellow[] = {0.9f, 0.8f, 0.0f, 0.8f};
     glLightfv(GL_LIGHT1, GL_DIFFUSE, yellow);
@@ -44,7 +44,7 @@ void init(){
     glLightfv(GL_LIGHT1, GL_AMBIENT, yellow);
     glMaterialfv(GL_FRONT_AND_BACK, GL_EMISSION, yellow);
     glEnable(GL_LIGHT1);
-    glLightfv(GL_LIGHT1, GL_POSITION, position);
+    glLightfv(GL_LIGHT1, GL_SPOT_DIRECTION, position);
 
     glutMouseFunc(trackballMouseFunction);
     glutMotionFunc(trackballMotionFunction);
@@ -70,10 +70,13 @@ void display(){
     cameraApply();
 
     float colors[][4] = {{1.0f, 1.0f, 1.0f, 1.0f}};
+    float clear[] = {0.0f, 0.0f, 0.0f, 0.8f};
+    float zero [] = {0.0f, 0.0f, 0.0f, 1.0f};
     glMaterialfv(GL_FRONT, GL_DIFFUSE, colors[0]);
     glMaterialfv(GL_FRONT, GL_SPECULAR, colors[0]);
     glMaterialfv(GL_FRONT, GL_AMBIENT, colors[0]);
     glMateriali(GL_FRONT, GL_SHININESS, 15);
+    glMaterialfv(GL_FRONT_AND_BACK, GL_EMISSION, clear);
     
     double texels[][2] = {{0, 1}, {0, 0},
                           {1, 0}, {1, 1}};
@@ -120,6 +123,17 @@ void display(){
         chair(texels);
     glPopMatrix();
 
+    //text bubble
+    std::string upper ("------------------------");
+    std::string speech("|Alright time for some computer graphics.|");
+    std::string lower ("<-----------------------");
+    float middle[] = {-0.15f, 0.1f, -0.8f};
+    float top   [] = {-0.15f, 0.15f, -0.8f};
+    float bottom[] = {-0.15f, 0.05f, -0.8f};
+    print(speech, 43, middle);
+    print(upper, 25, top);
+    print(lower, 25, bottom);
+
     glBindTexture(GL_TEXTURE_2D, textureIdList[3]);
     //floor lamp
     glPushMatrix();
@@ -137,23 +151,14 @@ void display(){
             cylinder(35);
         glPopMatrix();
         glPushMatrix();
-            glTranslatef(0.0f, -0.1f, 0.0f);
+            float yellow[] = {0.9f, 0.8f, 0.0f, 0.8f};
+            glMaterialfv(GL_FRONT_AND_BACK, GL_EMISSION, zero);
+            //glTranslatef(0.0f, -0.1f, 0.0f);
             glScalef(0.2f, 0.1f, 0.2f);
             glRotatef(90.0f, 1.0f, 0.0f, 0.0f);
             cylinder(20);
         glPopMatrix();
     glPopMatrix();
-
-    //text bubble
-    std::string upper ("------------------------");
-    std::string speech("|Alright time for some computer graphics.|");
-    std::string lower ("<-----------------------");
-    float middle[] = {-0.15f, 0.1f, -0.8f};
-    float top   [] = {-0.15f, 0.15f, -0.8f};
-    float bottom[] = {-0.15f, 0.05f, -0.8f};
-    print(speech, 43, middle);
-    print(upper, 25, top);
-    print(lower, 25, bottom);
 
     glFlush();
 }
