@@ -1,3 +1,3 @@
 # Computer Graphics Scene
 --- 
-This renders an indoor scene of Dr.Crawley teaching computer graphics. Also forgive the fact I used your likeness in this project.
+This renders an indoor scene of Dr.Crawley teaching computer graphics. Also forgive the fact I used your likeness in this project. The suprise is your catchphrase being rendered.

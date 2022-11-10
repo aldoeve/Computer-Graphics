@@ -36,15 +36,16 @@ void init(){
     glEnable(GL_LIGHTING);
     glEnable(GL_LIGHT0);
     glEnable(GL_NORMALIZE);
-    float position[] = {0, 0, 0, 1.0f };
-    //float position[] = {0.8f, -5.0f, -0.8f, 1};
-    float yellow[] = {0.9f, 0.8f, 0.0f, 0.8f};
+    float position[] = {0.4f, 0.0f, 0.4f, 1};
+    float yellow[] = {0.9f, 0.8f, 0.0f, 0.1f};
     glLightfv(GL_LIGHT1, GL_DIFFUSE, yellow);
     glLightfv(GL_LIGHT1, GL_SPECULAR, yellow);
     glLightfv(GL_LIGHT1, GL_AMBIENT, yellow);
     glMaterialfv(GL_FRONT_AND_BACK, GL_EMISSION, yellow);
     glEnable(GL_LIGHT1);
-    glLightfv(GL_LIGHT1, GL_SPOT_DIRECTION, position);
+    glLightfv(GL_LIGHT1, GL_POSITION, position);
+    glLightf(GL_LIGHT1, GL_SPOT_CUTOFF, 45.0f);
+    glLightf(GL_LIGHT1, GL_CONSTANT_ATTENUATION, 90.0f);
 
     glutMouseFunc(trackballMouseFunction);
     glutMotionFunc(trackballMotionFunction);
@@ -71,7 +72,6 @@ void display(){
 
     float colors[][4] = {{1.0f, 1.0f, 1.0f, 1.0f}};
     float clear[] = {0.0f, 0.0f, 0.0f, 0.8f};
-    float zero [] = {0.0f, 0.0f, 0.0f, 1.0f};
     glMaterialfv(GL_FRONT, GL_DIFFUSE, colors[0]);
     glMaterialfv(GL_FRONT, GL_SPECULAR, colors[0]);
     glMaterialfv(GL_FRONT, GL_AMBIENT, colors[0]);
@@ -137,7 +137,7 @@ void display(){
     glBindTexture(GL_TEXTURE_2D, textureIdList[3]);
     //floor lamp
     glPushMatrix();
-        //glTranslatef(0.8f, 0.0f, -0.8f);
+        glTranslatef(0.8f, 0.0f, -0.8f);
         glPushMatrix();
             glTranslatef(0.0f, -0.97f, 0.0f);
             glScalef(0.08f, 0.02f, 0.08f);
@@ -151,9 +151,13 @@ void display(){
             cylinder(35);
         glPopMatrix();
         glPushMatrix();
-            float yellow[] = {0.9f, 0.8f, 0.0f, 0.8f};
-            glMaterialfv(GL_FRONT_AND_BACK, GL_EMISSION, zero);
-            //glTranslatef(0.0f, -0.1f, 0.0f);
+            float yellow[] = {0.9f, 0.8f, 0.0f, 1.0f};
+            glMaterialfv(GL_FRONT_AND_BACK, GL_EMISSION, yellow);
+            glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, yellow);
+            glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, yellow);
+            glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT, yellow);
+            glMateriali(GL_FRONT_AND_BACK, GL_SHININESS, 50);
+            glTranslatef(0.0f, -0.1f, 0.0f);
             glScalef(0.2f, 0.1f, 0.2f);
             glRotatef(90.0f, 1.0f, 0.0f, 0.0f);
             cylinder(20);
