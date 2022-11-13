@@ -1,14 +1,11 @@
-indoor.out: camera.cpp indoor.cpp objects.cpp
-	g++ -g -Wall -o indoor camera.cpp indoor.cpp objects.cpp -lglut -lGL -lGLU
-	./indoor
+indoor.out: objProject.cpp objReader.cpp
+	g++ -g -Wall -o test2 objProject.cpp objReader.cpp -lglut -lGL -lGLU
+	./test2
 
 clean:
-	rm -f indoor
+	rm -f test2
 
 save:
 	@git add --all
 	@git commit -m"."
 	git push
-
-reminder:
-	@echo -e '\n zip should contain camera.cpp indoor.cpp objects.cpp makefile stb_image.h objects.h \n all images as well \n'
