@@ -18,13 +18,14 @@ void objReader(std::vector<std::vector<float>> & faces, std::vector<float> & tex
     char trash;
 
     while(getline(objectFile, temp)){
-        if(temp[0] == 'v'){
+        const std::string data(temp);
+        if(data[0] == 'v'){
             std::istringstream values(temp);
-            if(temp[1] == 'n'){
+            if(data[1] == 'n'){
                 values >> trash >> trash;
                 while(values >> temp) normals.push_back(std::stof(temp));
             }
-            else if(temp[1] == 't'){
+            else if(data[1] == 't'){
                 values >> trash >> trash;
                 while(values >> temp) texels.push_back(std::stof(temp));
             }
@@ -33,7 +34,7 @@ void objReader(std::vector<std::vector<float>> & faces, std::vector<float> & tex
                 while(values >> temp) vertices.push_back(std::stof(temp));
             }
         }
-        else if(temp[0] == 'f'){
+        else if(data[0] == 'f'){
             std::istringstream values(temp);
             values >> trash;
             std::vector<float> oneFace;
