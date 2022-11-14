@@ -11,6 +11,7 @@
 
 std::vector<std::vector<float>> f;
 std::vector<float> vt, vn, v;
+float numOfFaces(0);
 
 void init(const std::string & filename){
     glEnable(GL_LIGHTING);
@@ -18,9 +19,9 @@ void init(const std::string & filename){
     glEnable(GL_NORMALIZE);
     glEnable(GL_CULL_FACE);
 
-    std::vector<float> wastedSpace;
+    std::vector<float> size(1, 0);
     vt.push_back(0); vn.push_back(0); 
-    v.push_back(0) ; f.push_back(wastedSpace);
+    v.push_back(0) ; f.push_back(size);
     objReader(f, vt, v, vn, filename);
 }
 
@@ -38,7 +39,6 @@ void display(){
     glOrtho(-2.0f, 2.0f, -2.0f, 2.0f, -2.0f, 2.0f);
     glMatrixMode(GL_MODELVIEW);
 
-    
     glutSwapBuffers();
 }
 
@@ -46,13 +46,18 @@ int main(int argc, char** argv){
     std::string filename;
     std::cout << "Enter filename: ";
     std::cin >> filename;
+    init(filename);
+    int a(f[0][0]);
+        std::cout << f[1][0] << '\n';
+        std::cout << f[1][1] << '\n';
+        std::cout << f[1][2] << '\n';
+        std::cout << f[1][4] << '\n';
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB);
     glutInitWindowSize(640, 640);
     glutInitWindowPosition(50, 50);
     glutCreateWindow("Test 2");
     glutDisplayFunc(display);
-    init(filename);
     timer(0);
     glutMainLoop();
     return 0;

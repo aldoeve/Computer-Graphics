@@ -35,6 +35,7 @@ void objReader(std::vector<std::vector<float>> & faces, std::vector<float> & tex
             }
         }
         else if(data[0] == 'f'){
+            ++faces[0][0]; 
             std::istringstream values(temp);
             values >> trash;
             std::vector<float> oneFace;
