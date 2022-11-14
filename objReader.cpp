@@ -1,8 +1,3 @@
-#ifndef OBJECT_READER_IMPLEMENTATION
-#define OBJECT_READER_IMPLEMENTATION
-#include "objReader.h"
-#include <fstream>
-#include <sstream>
 //-----------------------------------------------
 //Developer-------Aldo Vera-Espinoza
 //Course----------CS3233
@@ -11,6 +6,11 @@
 //
 //Reads an obj file for OpenGL to use.
 //-----------------------------------------------
+#ifndef OBJECT_READER_IMPLEMENTATION
+#define OBJECT_READER_IMPLEMENTATION
+#include "objReader.h"
+#include <fstream>
+#include <sstream>
 
 void objReader(std::vector<std::vector<float>> & faces, std::vector<float> & texels, std::vector<float> & vertices, std::vector<float> & normals, const std::string & filename){
     std::ifstream objectFile(filename);
@@ -57,5 +57,4 @@ void objReader(std::vector<std::vector<float>> & faces, std::vector<float> & tex
     }
     objectFile.close();
 }
-
 #endif   

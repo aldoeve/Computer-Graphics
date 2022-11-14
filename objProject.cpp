@@ -1,13 +1,15 @@
+#ifdef _WIN32
+    #include <GL/glut.h>
+#elif __linux__
+    #include <GL/glut.h>
+#elif __APPLE__
+    #define GL_SILENCE_DEPRECATION
+    #include <OpenGL/gl.h>
+    #include <GLUT/glut.h>
+#endif
 #include "objReader.h"
-#include <fstream>
-#include <sstream>
-
 
 int main(){
-    std::vector<std::vector<float>> a;
-    std::vector<float> b;
-    std::vector<float> c;
-    std::vector<float> d;
-    objReader(a, b, c, d, "Lowpoly_tree_sample.obj");
+    
 }
     
