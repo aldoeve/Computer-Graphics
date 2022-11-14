@@ -47,7 +47,6 @@ int main(int argc, char** argv){
     std::cout << "Enter filename: ";
     std::cin >> filename;
     init(filename);
-    int a(f[0][0]);
         std::cout << f[1][0] << '\n';
         std::cout << f[1][1] << '\n';
         std::cout << f[1][2] << '\n';
