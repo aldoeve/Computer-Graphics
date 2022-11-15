@@ -11,7 +11,7 @@
 
 std::vector<std::vector<int>> f;
 std::vector<float> vt, vn, v;
-unsigned max;
+bool usingTextures(false);
 
 void init(const std::string & filename){
     glEnable(GL_LIGHTING);
@@ -76,13 +76,18 @@ void display(){
 
 int main(int argc, char** argv){
     char texture;
-    std::string filename;
+    std::string objFileName;
     std::cout << "Enter filename: ";
-    std::cin >> filename;
+    std::cin >> objFileName;
     std::cout << "Do you want to use a texture?(y/n): ";
     std::cin >> texture;
+    if(texture == 'y'){
+        usingTextures = true;
+        std::cout << "Enter Texture filename: ";
 
-    init(filename);
+    }
+
+    init(objFileName);
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB);
     glutInitWindowSize(640, 640);
