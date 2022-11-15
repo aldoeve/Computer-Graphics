@@ -13,6 +13,6 @@
 #include <iostream>
 
 //The function takes three vector containers and fills them with the proper information from the given obj file.
-void objReader(std::vector<std::vector<float>> &, std::vector<float> &, std::vector<float> &, std::vector<float> &, const std::string &);
+void objReader(std::vector<std::vector<int>> &, std::vector<float> &, std::vector<float> &, std::vector<float> &, const std::string &);
 
 #endif
