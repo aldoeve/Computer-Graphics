@@ -2,7 +2,7 @@
 //Developer-------Aldo Vera-Espinoza
 //Course----------CS3233
 //Project---------Obj file reader
-//Due Date--------November XX, 2022
+//Due Date--------November 16, 2022
 //
 //Reads an obj file for OpenGL to use.
 //-----------------------------------------------
@@ -31,7 +31,10 @@ void objReader(std::vector<std::vector<int>> & faces, std::vector<float> & texel
             }
             else{
                 values >> trash;
-                while(values >> temp) vertices.push_back(std::stof(temp));
+                while(values >> temp){ 
+                    vertices.push_back(std::stof(temp));
+                    if(std::abs(std::stof(temp)) > (float)faces[0][1]) faces[0][1] = std::stoi(temp);
+                }
             }
         }
         else if(data[0] == 'f'){

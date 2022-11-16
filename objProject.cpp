@@ -1,3 +1,4 @@
+
 #ifdef _WIN32
     #include <GL/glut.h>
 #elif __linux__
@@ -11,19 +12,18 @@
 
 std::vector<std::vector<int>> f;
 std::vector<float> vt, vn, v;
-bool usingTextures(false);
 
-void init(const std::string & filename){
+void init(const std::string & objfilename){
     glEnable(GL_LIGHTING);
     glEnable(GL_LIGHT0);
     glEnable(GL_NORMALIZE);
     glEnable(GL_CULL_FACE);
 
-    std::vector<int> size(1, 0);
+    std::vector<int> size(2, 0);
     f.reserve(300) ; v.reserve(300);
     vt.reserve(300); vn.reserve(300);
     f.push_back(size);
-    objReader(f, vt, v, vn, filename);
+    objReader(f, vt, v, vn, objfilename);
 }
 
 void timer(int unused){
@@ -37,22 +37,28 @@ void display(){
     glEnable(GL_DEPTH_TEST);
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
-    glOrtho(-50.0f, 50.0f, -50.0f, 50.0f, -50.0f, 50.0f);
+    glOrtho(-1.0f * f[0][1] - 5.0f, f[0][1] + 5.0f, -1.0f * f[0][1] - 5.0f, f[0][1] + 5.0f, -1.0f * f[0][1] - 5.0f, f[0][1] + 5.0f);
     glMatrixMode(GL_MODELVIEW);
+
+    float cube_color[] = { 0.7f, 0.0f, 0.7f, 1.0f };
+    glMaterialfv(GL_FRONT, GL_DIFFUSE, cube_color);
+    glMaterialfv(GL_FRONT, GL_SPECULAR, cube_color);
+    glMaterialfv(GL_FRONT, GL_AMBIENT, cube_color);
+    glMaterialf(GL_FRONT, GL_SHININESS, 50.0F);
+
+    glRotatef(2.0, 1.0f, 1.0f, 1.0f);
 
     //assuming faces with more than three vertices will be rendered using depricated quads.
     //faces with 3 vertices will be rendered using triangles.
     //any face less than three vertices will be discarded as errors.
+    //while texture vetices are read in as per the test requirements, they are not utilized.
     for(int i(1); i <= (int)(f[0][0]); ++i){
         if(f[i].size() == 9){
             glBegin(GL_TRIANGLES);
-            //v vt vn
                 for(short int j(0); j < 9; j += 3){
                     int vnLocation((f[i][j + 2] - 1) *3);
-                    int vLocation((f[i][j] - 1) * 3); 
-                    int vtLocation((f[i][j + 1] - 1) * 2);
+                    int vLocation((f[i][j] - 1) * 3);
                     glNormal3f(vn[vnLocation], vn[vnLocation + 1], vn[vnLocation + 2]);
-                    glTexCoord2f(vt[vtLocation], vt[vtLocation + 1]);
                     glVertex3f(v[vLocation], v[vLocation + 1], v[vLocation + 2]);
                 }
             glEnd();
@@ -61,10 +67,8 @@ void display(){
             glBegin(GL_QUADS);
                 for(short int j(0); j < (int)(f[i].size()); j += 3){
                     int vnLocation((f[i][j + 2] - 1) *3);
-                    int vLocation((f[i][j] - 1) * 3); 
-                    int vtLocation((f[i][j + 1] - 1) * 2);
+                    int vLocation((f[i][j] - 1) * 3);
                     glNormal3f(vn[vnLocation], vn[vnLocation + 1], vn[vnLocation + 2]);
-                    glTexCoord2f(vt[vtLocation], vt[vtLocation + 1]);
                     glVertex3f(v[vLocation], v[vLocation + 1], v[vLocation + 2]);
                 }
             glEnd();
@@ -75,17 +79,10 @@ void display(){
 }
 
 int main(int argc, char** argv){
-    char texture;
     std::string objFileName;
+    std::string textureFileName;
     std::cout << "Enter filename: ";
-    std::cin >> objFileName;
-    std::cout << "Do you want to use a texture?(y/n): ";
-    std::cin >> texture;
-    if(texture == 'y'){
-        usingTextures = true;
-        std::cout << "Enter Texture filename: ";
-
-    }
+    std::cin  >> objFileName;
 
     init(objFileName);
     glutInit(&argc, argv);
