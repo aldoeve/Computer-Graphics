@@ -10,6 +10,7 @@
 #endif
 #include "objReader.h"
 
+//I understand Global variables are bad
 std::vector<std::vector<int>> f;
 std::vector<float> vt, vn, v;
 
@@ -46,7 +47,7 @@ void display(){
     glMaterialfv(GL_FRONT, GL_AMBIENT, cube_color);
     glMaterialf(GL_FRONT, GL_SHININESS, 50.0F);
 
-    glRotatef(2.0, 1.0f, 1.0f, 1.0f);
+    glRotatef(2.0, 0.0f, 1.0f, 0.0f);
 
     //assuming faces with more than three vertices will be rendered using depricated quads.
     //faces with 3 vertices will be rendered using triangles.
@@ -84,13 +85,13 @@ int main(int argc, char** argv){
     std::cout << "Enter filename: ";
     std::cin  >> objFileName;
 
-    init(objFileName);
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB);
     glutInitWindowSize(640, 640);
     glutInitWindowPosition(50, 50);
     glutCreateWindow("Test 2");
     glutDisplayFunc(display);
+    init(objFileName);
     timer(0);
     glutMainLoop();
     return 0;
