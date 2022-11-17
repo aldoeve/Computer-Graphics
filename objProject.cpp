@@ -19,7 +19,7 @@
 #endif
 #include "objReader.h"
 
-//I understand Global variables are bad
+//I understand Global variables are not preferable
 std::vector<std::vector<int>> f;
 std::vector<float> vt, vn, v;
 
