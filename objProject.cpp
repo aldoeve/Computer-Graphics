@@ -62,13 +62,17 @@ void display(){
     //faces with 3 vertices will be rendered using triangles.
     //any face less than three vertices will be discarded as errors.
     //while texture vetices are read in as per the test requirements, they are not utilized.
+    //If any information is not present in the faces such as no given normal vector, the previous one will be utilized.
     for(int i(1); i <= (int)(f[0][0]); ++i){
         if(f[i].size() == 9){
             glBegin(GL_TRIANGLES);
                 for(short int j(0); j < 9; j += 3){
-                    int vnLocation((f[i][j + 2] - 1) *3);
+                    int vnLocation((f[i][j + 2] - 1) * 3);
+                    //int vtLocation((f[i][j + 1] - 1) * 3);
                     int vLocation((f[i][j] - 1) * 3);
-                    glNormal3f(vn[vnLocation], vn[vnLocation + 1], vn[vnLocation + 2]);
+                    if(vnLocation > 0) glNormal3f(vn[vnLocation], vn[vnLocation + 1], vn[vnLocation + 2]);
+                    //if(vtLocation > 0)
+                    //  glTexCoord2f(vt[vtLocation], vt[vtLocation + 1]);
                     glVertex3f(v[vLocation], v[vLocation + 1], v[vLocation + 2]);
                 }
             glEnd();
@@ -77,8 +81,11 @@ void display(){
             glBegin(GL_QUADS);
                 for(short int j(0); j < (int)(f[i].size()); j += 3){
                     int vnLocation((f[i][j + 2] - 1) *3);
+                    //int vtLocation((f[i][j + 1] - 1) * 3);
                     int vLocation((f[i][j] - 1) * 3);
-                    glNormal3f(vn[vnLocation], vn[vnLocation + 1], vn[vnLocation + 2]);
+                    if(vnLocation > 0) glNormal3f(vn[vnLocation], vn[vnLocation + 1], vn[vnLocation + 2]);
+                    //if(vtLocation > 0)
+                    //  glTexCoord2f(vt[vtLocation], vt[vtLocation + 1]);
                     glVertex3f(v[vLocation], v[vLocation + 1], v[vLocation + 2]);
                 }
             glEnd();
