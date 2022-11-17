@@ -1,4 +1,13 @@
 
+//-----------------------------------------------
+//Developer-------Aldo Vera-Espinoza
+//Course----------CS3233
+//Project---------Test 2
+//Due Date--------November 16, 2022
+//
+//Uses data from an obj file to draw the object
+//using OpenGL.
+//-----------------------------------------------
 #ifdef _WIN32
     #include <GL/glut.h>
 #elif __linux__
