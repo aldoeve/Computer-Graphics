@@ -1,3 +1,4 @@
 # Computer Graphics Scene
 --- 
-This renders an indoor scene of Dr.Crawley teaching computer graphics. Also forgive the fact I used your likeness in this project. The suprise is your catchphrase being rendered.
+This renders an outdoor scene of a cow being watched by a dog while a hidden teapot cools down.
+The teapot can only be seen at certain angles. The reason as to why I am not quite sure it seems that enabling culling faces seems to affect this object.
